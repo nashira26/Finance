@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Symbol</th>
+            <th scope="col">Name</th>
+            <th scope="col">Shares</th>
+            <th scope="col">Price</th>
+            <th scope="col">TOTAL</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for deal in user_holdings %}
+            <tr>
+               <td>{{ deal["symbol"] }}</td>
+               <td>{{ deal["name"] }}</td>
+               <td>{{ deal["shares"] }}</td>
+               <td>{{ deal["current_price"] | usd}}</td>
+               <td>{{ deal["total_price"] | usd }}</td>
+            </tr>
+            {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <th scope="row">Cash</th>
+            <td>{{ current_cash | usd }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <th scope="row">TOTAL</th>
+            <td>{{ total_cash | usd }}</td>
+        </tr>
+    </tfoot>
+
+
+</table>
+
+{% endblock %}
